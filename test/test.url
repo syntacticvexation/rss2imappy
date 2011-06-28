@@ -1,0 +1,38 @@
+# Hatena Antena(http://a.hatena.ne.jp/).
+# You sync contents of Antena with mails in folder "RSS.Anntena"
+folder: RSS.Anntena
+expire: 3
+sync: yes
+http://a.hatena.ne.jp/foo/rss
+
+# separete Blog entry by every feed.
+# Friend's Blog Feed.
+folder: RSS.Blog.Friend
+expire: 5
+http://tahoo.org/~taku/diary/cl.rdf
+http://nais.to/~yto/clog/cl.rdf
+
+# IT releated feeds.
+folder: RSS.Blog.IT
+expire: 10
+http://blog.japan.cnet.com/umeda/index.rdf
+http://kimuratakeshi.cocolog-nifty.com/blog/index.rdf
+
+# I want to know modified time of my own wiki.
+# by "type: channel", rss2imap run as simple Antenna.
+folder: RSS.Wiki
+type: channel
+http://tahoo.org/~taku/wiki/wiki.cgi?action=RSS
+http://cl.naist.jp/index.php?cmd=rss
+
+# rss2imap generates folder name from title of the news site.
+# it leave articles of last two days and deletes entries before
+# last two days, even if these are unread.
+folder: RSS.News.%{channel:title}
+expire: 2
+expire-unseen: yes
+http://www.atmarkit.co.jp/rss/rss2dc.xml
+http://www3.asahi.com/rss/index.rdf
+http://japan.cnet.com/rss/index.rdf
+http://japan.linux.com/japanlinuxcom.rdf
+http://slashdot.jp/slashdotjp.rss

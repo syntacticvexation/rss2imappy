@@ -1,0 +1,8 @@
+[IMAPConfig]
+
+user = 
+password = 
+
+host = localhost
+
+use-ssl = 1
