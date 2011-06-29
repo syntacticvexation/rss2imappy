@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # rss2imappy: A reimplementation of rss2imap (http://rss2imap.sourceforge.net)
 # in Python
 # Copyright (C) 2011 Syntactic Vexation
@@ -14,8 +16,6 @@
 
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-#!/usr/bin/python
 
 from urlfileparser import *
 
