@@ -76,7 +76,7 @@ class URLFileConfObj:
         ret_str = ''
 
         for key in self.items.keys():
-            ret_str = ret_str + key + ": " + self.items[key] + "\n"
+            ret_str = ret_str + key + ": " + str(self.items[key]) + "\n"
 
         for link in self.links:
             ret_str = ret_str + link.__str__() + "\n"
