@@ -80,13 +80,14 @@ class FeedMsg:
         date = email.utils.formatdate(calendar.timegm(entry['updated_parsed']),\
                                       False,True)
         self.msg_id = link+'@localhost'
+	self.msg_id = self.msg_id.replace("\n",'')
 
         if 'summary_detail' in entry:
             summary = entry['summary_detail']['value']
         elif 'summary' in entry:
             summary = entry['summary']
         else:
-            print entry.keys()
+            #print entry.keys()
             summary = ''
             
         agg_date = datetime.datetime.today().strftime("%a %b %d %H:%M:%S %Y")
@@ -146,7 +147,9 @@ class RIMAPConnection:
                 typ, data = self.conn.fetch(num, \
                                             '(BODY[HEADER.FIELDS (MESSAGE-ID)])')
                 typ,msg_id_string  = data[0]
-                if msg_id_string.split(': ')[1].rstrip() == target_msg_id:
+		actual_msg_id = msg_id_string.split(': ')[1].replace("\n",'').rstrip()
+
+                if actual_msg_id == target_msg_id:
                     return True
 
         return False
@@ -183,7 +186,7 @@ class RIMAPConnection:
 
 def process_feed(imap_conn,user,config,url):
     feed = feedparser.parse(url)
-  
+
     for entry in reversed(feed['entries']):
         expanded_config = expand_macros(feed,entry,config)
         imap_conn.put_entry(expanded_config['folder'],\
