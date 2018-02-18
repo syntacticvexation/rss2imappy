@@ -148,8 +148,7 @@ class RIMAPConnection:
                                             '(BODY[HEADER.FIELDS (MESSAGE-ID)])')
                 typ,msg_id_string  = data[0]
 		try:
-
-			actual_msg_id = msg_id_string.split(': ')[1].replace("\n",'').rstrip()
+			actual_msg_id = msg_id_string.split(': ')[1].replace("\n",'').replace("\r",'').rstrip()
 		except IndexError:
 			print self.conn.fetch(num, '(RFC822)')
 			return True
