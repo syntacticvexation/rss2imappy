@@ -79,7 +79,7 @@ class FeedMsg:
         link = entry['link']
         date = email.utils.formatdate(calendar.timegm(entry['updated_parsed']),\
                                       False,True)
-        self.msg_id = link+'@localhost'
+        self.msg_id = link.encode("ascii","replace")+'@localhost'
 	self.msg_id = self.msg_id.replace("\n",'')
 
         if 'summary_detail' in entry:
